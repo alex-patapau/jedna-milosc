@@ -35,7 +35,7 @@ Single-page website for the Polish cuisine restaurant "Jedna Miłość" with mul
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/jedna-milosc-restaurant.git
+git clone https://github.com/your-username/jedna-milosc.git
 ```
 
 2. Open the `index.html` file in your browser
@@ -47,7 +47,7 @@ git clone https://github.com/your-username/jedna-milosc-restaurant.git
 
 ## Demo
 
-[View Demo](https://your-demo-link.com)
+[View Demo](https://alex-patapau.github.io/jedna-milosc/)
 
 ## Screenshots
 
