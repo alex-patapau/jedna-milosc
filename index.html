@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jedna Miłość - Tradycyjna Restauracja</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;800&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c62828;
+            --primary-dark: #8e0000;
+            --secondary: #f9a825;
+            --light: #fff8e1;
+            --dark: #212121;
+            --gray: #757575;
+            --light-gray: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .logo {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.7);
+            letter-spacing: 3px;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            font-weight: 300;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 8px 15px;
+            border-radius: 30px;
+        }
+        
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            padding: 18px 25px;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        /* Menu Sections */
+        section {
+            padding: 100px 0;
+        }
+        
+        .section-header {
+            position: relative;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 60px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .section-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+        }
+        
+        .section-header img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .section-title {
+            color: white;
+            position: relative;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+            padding: 0 20px;
+        }
+        
+        .section-content {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+        
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .menu-category {
+            margin-bottom: 30px;
+        }
+        
+        .category-header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .menu-items {
+            padding: 20px;
+            border: 1px solid var(--light-gray);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .menu-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--light-gray);
+        }
+        
+        .menu-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .item-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .item-name h4 {
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+        }
+        
+        .item-price {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            white-space: nowrap;
+        }
+        
+        .item-description {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        
+        .item-tag {
+            display: inline-block;
+            background: var(--light);
+            color: var(--primary-dark);
+            font-size: 0.85rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 120px 0;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 15px;
+            width: 300px;
+            backdrop-filter: blur(8px);
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-8px);
+        }
+        
+        .contact-card i {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+        
+        .delivery-apps {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .delivery-app {
+            background: white;
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .delivery-app:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-title {
+            color: var(--secondary);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .hours {
+            text-align: left;
+        }
+        
+        .hours p {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.95rem;
+            color: var(--gray);
+            text-align: center;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .logo {
+                font-size: 3.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .nav-menu li {
+                padding: 15px 18px;
+            }
+            
+            .section-header {
+                height: 250px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+                padding: 0 20px;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .nav-menu li {
+                padding: 12px 15px;
+            }
+            
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .hours {
+                text-align: center;
+            }
+            
+            .social-icons {
+                justify-content: center;
+            }
+            
+            .footer-title::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .section-header {
+                height: 200px;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 2.3rem;
+            }
+            
+            .nav-menu li {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .section-header {
+                height: 180px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Language Switcher -->
+    <header>
+        <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="es">ES</button>
+            <button class="lang-btn" data-lang="de">DE</button>
+            <button class="lang-btn" data-lang="by">BY</button>
+        </div>
+        
+        <div class="container">
+            <h1 class="logo">JEDNA MIŁOŚĆ</h1>
+            <p class="tagline" data-translate="tagline">Tradycyjna kuchnia polska przygotowana z miłością</p>
+        </div>
+    </header>
+    
+    <!-- Navigation Menu -->
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="#dumplings" data-translate="menu_dumplings">Pielmieni</a></li>
+                <li><a href="#pierogi" data-translate="menu_pierogi">Pierogi</a></li>
+                <li><a href="#chebureki" data-translate="menu_chebureki">Czebureki</a></li>
+                <li><a href="#main-dishes" data-translate="menu_main">Dania Główne</a></li>
+                <li><a href="#drinks" data-translate="menu_drinks">Napoje</a></li>
+                <li><a href="#contact" data-translate="menu_contact">Kontakt</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Dumplings Section -->
+    <section id="dumplings">
+        <div class="container">
+            <div class="section-header">
+                <img src="https://images.unsplash.com/photo-1626082927389-6cd097cee6a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pielmieni">
+                <h2 class="section-title" data-translate="dumplings_title">PIELMIENI - Tradycyjne Pierożki</h2>
+            </div>
+            
+            <div class="section-content">
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3>XL - 35 PLN / L - 25 PLN</h3>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="dumpling1">Wieprzowina + Wołowina</h4>
+                                <span class="item-price">35/25 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="dumpling_desc1">Tradycyjny przepis z wyśmienitymi mięsami</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="dumpling2">Kurczak</h4>
+                                <span class="item-price">35/25 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="dumpling_desc2">Delikatny farsz z kurczaka</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="dumpling3">Indyk</h4>
+                                <span class="item-price">35/25 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="dumpling_desc3">Chude i aromatyczne</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="dumpling4">Cielecina</h4>
+                                <span class="item-price">35/25 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="dumpling_desc4">Delikatny farsz z cielęciny</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="dumpling5">Łosoś + Ser</h4>
+                                <span class="item-price">45/35 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="dumpling_desc5">Łosoś premium z kremowym serem</p>
+                            <span class="item-tag" data-translate="premium">Premium</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-style: italic;" data-translate="belarus_recipe">Przygotowane według autentycznych białoruskich przepisów</p>
+        </div>
+    </section>
+    
+    <!-- Pierogi Section -->
+    <section id="pierogi" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <img src="https://images.unsplash.com/photo-1622737133809-d95047b9e673?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Pierogi">
+                <h2 class="section-title" data-translate="pierogi_title">PIEROGI - Tradycyjne Polskie</h2>
+            </div>
+            
+            <div class="section-content">
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3>XL - 30 PLN / L - 20 PLN</h3>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="pierogi1">Ziemniaki + Twaróg + Pieprz (Ruskie)</h4>
+                                <span class="item-price">30/20 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="pierogi_desc1">Klasyczne polskie z białym serem</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="pierogi2">Szpinak + Ser Ricotta + Ser Parmezan</h4>
+                                <span class="item-price">30/20 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="pierogi_desc2">Z serem parmezan</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="pierogi3">Ziemniaki + Boczek + Cebula</h4>
+                                <span class="item-price">30/20 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="pierogi_desc3">Z karmelizowaną cebulą</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="pierogi4">Kapusta + Borowiki + Cebula</h4>
+                                <span class="item-price">30/20 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="pierogi_desc4">Z dzikimi grzybami i cebulą</p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="pierogi5">Ziemniaki + Borowiki</h4>
+                                <span class="item-price">30/20 PLN</span>
+                            </div>
+                            <p class="item-description" data-translate="pierogi_desc5">Leśne grzyby z ziemniakami</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Chebureki Section -->
+    <section id="chebureki">
+        <div class="container">
+            <div class="section-header">
+                <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Czebureki">
+                <h2 class="section-title" data-translate="chebureki_title">CZEBUREKI - Smażone Pierożki</h2>
+            </div>
+            
+            <div class="section-content">
+                <div class="menu-category">
+                    <div class="category-header">
+                        <h3 data-translate="per_piece">Per piece - 12 PLN</h3>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="cheburek1">Wieprzowina + Wołowina</h4>
+                                <span class="item-price">12 PLN</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="cheburek2">Mozzarella + Pomidor</h4>
+                                <span class="item-price">12 PLN</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="item-name">
+                                <h4 data-translate="cheburek3">Ziemniaki + Boczek</h4>
+                                <span class="item-price">12 PLN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p style="text-align: center; margin-top: 30px; font-style: italic;" data-translate="feedback">Będziemy wdzięczni za wasze opinie o daniach!</p>
+            <p style="text-align: center; margin-top: 10px; font-weight: 500;" data-translate="love">Wszystkie nasze dania są przygotowane z wyjątkową miłością</p>
+        </div>
+    </section>
+    
+    <!-- Main Dishes Section -->
+    <section id="main-dishes" style="background-color: var(--light-gray);">
+        <div class="container">
+            <div class="section-header">
+                <img src="https://images.unsplash.com/photo-1623341215095-6a4e76a90d30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Dania główne">
+                <h2 class="section-title" data-translate="dishes_title">DANIA GŁÓWNE</h2>
+            </div>
+            
+            <div class="section-content">
+                <div class="menu-grid">
+                    <div class="menu-category">
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish1">Zupa warzywna</h4>
+                                    <span class="item-price">18 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish2">Barszcz z Mięsem</h4>
+                                    <span class="item-price">18 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish3">Rosół z Kurczaka</h4>
+                                    <span class="item-price">18 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish4">Solanka (zupa mięsna)</h4>
+                                    <span class="item-price">25 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish5">Śledź pod pierzynką (szuba)</h4>
+                                    <span class="item-price">34 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dish6">Sałatka Oliwera</h4>
+                                    <span class="item-price">18 PLN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Drinks Section -->
+    <section id="drinks">
+        <div class="container">
+            <div class="section-header">
+                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="Napoje">
+                <h2 class="section-title" data-translate="drinks_title">NAPOJE & DESERY</h2>
+            </div>
+            
+            <div class="section-content">
+                <div class="menu-grid">
+                    <!-- Coffee -->
+                    <div class="menu-category">
+                        <div class="category-header">
+                            <h3 data-translate="coffee">Magic Coffee</h3>
+                        </div>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="coffee1">Flat White</h4>
+                                    <span class="item-price">15 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="coffee2">Latte</h4>
+                                    <span class="item-price">15 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Cappuccino</h4>
+                                    <span class="item-price">14 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Macchiato</h4>
+                                    <span class="item-price">14 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Americano</h4>
+                                    <span class="item-price">10 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Espresso</h4>
+                                    <span class="item-price">10 PLN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other Drinks -->
+                    <div class="menu-category">
+                        <div class="category-header">
+                            <h3 data-translate="other_drinks">Inne Napoje</h3>
+                        </div>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="hot1">Napar z rokitnika z miodem</h4>
+                                    <span class="item-price">14 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="hot2">Herbata do wyboru</h4>
+                                    <span class="item-price">8 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Kombucha</h4>
+                                    <span class="item-price">14 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4>Coca Cola, Fanta, Sprite (0.5L)</h4>
+                                    <span class="item-price">9 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="juice">Sok do wyboru</h4>
+                                    <span class="item-price">6 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="water">Woda gazowana/niegazowana</h4>
+                                    <span class="item-price">5 PLN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Desserts -->
+                    <div class="menu-category">
+                        <div class="category-header">
+                            <h3 data-translate="desserts">Desery Lavatia</h3>
+                        </div>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dessert1">Pierożki z wiśnią/truskawką</h4>
+                                    <span class="item-price">30/20 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dessert2">Pierożki ze słodkim twarogiem</h4>
+                                    <span class="item-price">30/20 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dessert3">Sernichki klasyczne</h4>
+                                    <span class="item-price">30/20 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dessert4">Sernichki z rodzynkami</h4>
+                                    <span class="item-price">30/20 PLN</span>
+                                </div>
+                            </div>
+                            
+                            <div class="menu-item">
+                                <div class="item-name">
+                                    <h4 data-translate="dessert5">Sernichki z czekoladą</h4>
+                                    <span class="item-price">30/20 PLN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title" data-translate="contact_title">Kontakt i Dostawa</h2>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3 data-translate="address">Adres</h3>
+                    <p>Grzybowska 39, Wola</p>
+                    <p>Warszawa, Polska</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3 data-translate="phone">Telefon</h3>
+                    <p>+48 506 512 268</p>
+                    <p>Telegram, WhatsApp: +48 452 362 406</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-truck"></i>
+                    <h3 data-translate="delivery">Dostawa</h3>
+                    <div class="delivery-apps">
+                        <div class="delivery-app">Bolt Food</div>
+                        <div class="delivery-app">Wolt</div>
+                        <div class="delivery-app">Uber Eats</div>
+                        <div class="delivery-app">Pyszne.pl</div>
+                        <div class="delivery-app">Glovo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">JEDNA MIŁOŚĆ</h3>
+                    <p data-translate="footer_desc">Restauracja • Pierogarnia • Sklep</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title" data-translate="hours_title">Godziny Otwarcia</h3>
+                    <div class="hours">
+                        <p>
+                            <span data-translate="mon_fri">Pon-Pt:</span>
+                            <span>11:00 - 22:00</span>
+                        </p>
+                        <p>
+                            <span data-translate="sat">Sobota:</span>
+                            <span>12:00 - 23:00</span>
+                        </p>
+                        <p>
+                            <span data-translate="sun">Niedziela:</span>
+                            <span>12:00 - 21:00</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title" data-translate="feedback_title">Opinie</h3>
+                    <p data-translate="feedback_footer">Będziemy wdzięczni za wasze opinie o daniach!</p>
+                    <p style="margin-top: 10px;" data-translate="love_footer">Wszystkie nasze dania są przygotowane z wyjątkową miłością</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Jedna Miłość Restaurant. <span data-translate="rights">Wszelkie prawa zastrzeżone.</span></p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Translations object
+        const translations = {
+            en: {
+                // Header
+                tagline: "Traditional Polish cuisine made with love",
+                
+                // Navigation
+                menu_dumplings: "Dumplings",
+                menu_pierogi: "Pierogi",
+                menu_chebureki: "Chebureki",
+                menu_main: "Main Dishes",
+                menu_drinks: "Drinks",
+                menu_contact: "Contact",
+                
+                // Sections
+                dumplings_title: "PIELMIENI - Traditional Dumplings",
+                dumpling1: "Pork & Beef",
+                dumpling_desc1: "Traditional recipe with premium meats",
+                dumpling2: "Chicken",
+                dumpling_desc2: "Tender chicken filling",
+                dumpling3: "Turkey",
+                dumpling_desc3: "Lean and flavorful",
+                dumpling4: "Veal",
+                dumpling_desc4: "Delicate veal filling",
+                dumpling5: "Salmon & Cheese",
+                dumpling_desc5: "Premium salmon with creamy cheese",
+                premium: "Premium",
+                belarus_recipe: "Prepared according to authentic Belarusian recipes",
+                
+                pierogi_title: "PIEROGI - Polish Dumplings",
+                pierogi1: "Potato & Cheese (Ruskie)",
+                pierogi_desc1: "Classic Polish style with farmer cheese",
+                pierogi2: "Spinach & Ricotta",
+                pierogi_desc2: "With Parmesan cheese",
+                pierogi3: "Potato & Bacon",
+                pierogi_desc3: "With caramelized onions",
+                pierogi4: "Cabbage & Mushrooms",
+                pierogi_desc4: "With wild mushrooms and onions",
+                pierogi5: "Potato & Mushrooms",
+                pierogi_desc5: "Forest mushrooms with potatoes",
+                
+                chebureki_title: "CZEBUREKI - Fried Dumplings",
+                per_piece: "Per piece - 12 PLN",
+                cheburek1: "Pork & Beef",
+                cheburek2: "Mozzarella & Tomato",
+                cheburek3: "Potato & Bacon",
+                feedback: "We appreciate your feedback about our dishes!",
+                love: "All our dishes are prepared with special love",
+                
+                dishes_title: "MAIN DISHES",
+                dish1: "Vegetable Soup",
+                dish2: "Borscht with Meat",
+                dish3: "Chicken Broth",
+                dish4: "Solanka (Meat Soup)",
+                dish5: "Herring Under a Fur Coat",
+                dish6: "Olivier Salad",
+                
+                drinks_title: "DRINKS & DESSERTS",
+                coffee: "Magic Coffee",
+                coffee1: "Flat White",
+                coffee2: "Latte",
+                other_drinks: "Other Drinks",
+                hot1: "Sea Buckthorn with Honey",
+                hot2: "Tea of Your Choice",
+                juice: "Juice of Your Choice",
+                water: "Water (sparkling/still)",
+                desserts: "Lavatia Desserts",
+                dessert1: "Dumplings with Cherry/Strawberry",
+                dessert2: "Dumplings with Sweet Cottage Cheese",
+                dessert3: "Sernichki Classic",
+                dessert4: "Sernichki with Raisins",
+                dessert5: "Sernichki with Chocolate",
+                
+                contact_title: "CONTACT & DELIVERY",
+                address: "Address",
+                phone: "Phone",
+                delivery: "Delivery",
+                
+                // Footer
+                footer_desc: "Restaurant • Pierogarnia • Shop",
+                hours_title: "Opening Hours",
+                mon_fri: "Mon-Fri:",
+                sat: "Saturday:",
+                sun: "Sunday:",
+                feedback_title: "Feedback",
+                feedback_footer: "We appreciate your feedback about our meals!",
+                love_footer: "All dishes prepared with special love",
+                rights: "All rights reserved."
+            },
+            es: {
+                tagline: "Cocina polaca tradicional hecha con amor",
+                menu_dumplings: "Empanadillas",
+                menu_pierogi: "Pierogi",
+                menu_chebureki: "Chebureki",
+                menu_main: "Platos Principales",
+                menu_drinks: "Bebidas",
+                menu_contact: "Contacto",
+                dumplings_title: "PIELMIENI - Empanadillas Tradicionales",
+                dumpling1: "Cerdo y Ternera",
+                dumpling_desc1: "Receta tradicional con carnes premium",
+                dumpling2: "Pollo",
+                dumpling_desc2: "Relleno de pollo tierno",
+                dumpling3: "Pavo",
+                dumpling_desc3: "Magro y sabroso",
+                dumpling4: "Ternera",
+                dumpling_desc4: "Relleno de ternera delicado",
+                dumpling5: "Salmón y Queso",
+                dumpling_desc5: "Salmón premium con queso cremoso",
+                premium: "Premium",
+                belarus_recipe: "Preparado según recetas bielorrusas auténticas",
+                pierogi_title: "PIEROGI - Empanadillas Polacas",
+                pierogi1: "Patata y Queso (Ruskie)",
+                pierogi_desc1: "Estilo polaco clásico con queso fresco",
+                pierogi2: "Espinacas y Ricotta",
+                pierogi_desc2: "Con queso parmesano",
+                pierogi3: "Patata y Bacon",
+                pierogi_desc3: "Con cebolla caramelizada",
+                pierogi4: "Col y Setas",
+                pierogi_desc4: "Con setas silvestres y cebolla",
+                pierogi5: "Patata y Setas",
+                pierogi_desc5: "Setas del bosque con patatas",
+                chebureki_title: "CZEBUREKI - Empanadillas Fritas",
+                per_piece: "Por pieza - 12 PLN",
+                cheburek1: "Cerdo y Ternera",
+                cheburek2: "Mozzarella y Tomate",
+                cheburek3: "Patata y Bacon",
+                feedback: "¡Agradecemos sus comentarios sobre nuestros platos!",
+                love: "Todos nuestros platos se preparan con especial amor",
+                dishes_title: "PLATOS PRINCIPALES",
+                dish1: "Sopa de Verduras",
+                dish2: "Borscht con Carne",
+                dish3: "Caldo de Pollo",
+                dish4: "Solanka (Sopa de Carne)",
+                dish5: "Arenque Bajo un Abrigo",
+                dish6: "Ensalada Olivier",
+                drinks_title: "BEBIDAS Y POSTRES",
+                coffee: "Café Mágico",
+                coffee1: "Flat White",
+                coffee2: "Latte",
+                other_drinks: "Otras Bebidas",
+                hot1: "Bebida de Espino Amarillo con Miel",
+                hot2: "Té de Su Elección",
+                juice: "Zumo de Su Elección",
+                water: "Agua (con gas/sin gas)",
+                desserts: "Postres Lavatia",
+                dessert1: "Empanadillas con Cereza/Fresa",
+                dessert2: "Empanadillas con Requesón Dulce",
+                dessert3: "Sernichki Clásico",
+                dessert4: "Sernichki con Pasas",
+                dessert5: "Sernichki con Chocolate",
+                contact_title: "CONTACTO Y ENTREGA",
+                address: "Dirección",
+                phone: "Teléfono",
+                delivery: "Entrega",
+                footer_desc: "Restaurante • Pierogarnia • Tienda",
+                hours_title: "Horario de Apertura",
+                mon_fri: "Lun-Vie:",
+                sat: "Sábado:",
+                sun: "Domingo:",
+                feedback_title: "Comentarios",
+                feedback_footer: "¡Agradecemos sus comentarios sobre nuestros platos!",
+                love_footer: "Todos los platos preparados con especial amor",
+                rights: "Todos los derechos reservados."
+            },
+            de: {
+                tagline: "Traditionelle polnische Küche mit Liebe zubereitet",
+                menu_dumplings: "Teigtaschen",
+                menu_pierogi: "Pierogi",
+                menu_chebureki: "Tschebureki",
+                menu_main: "Hauptgerichte",
+                menu_drinks: "Getränke",
+                menu_contact: "Kontakt",
+                dumplings_title: "PIELMIENI - Traditionelle Teigtaschen",
+                dumpling1: "Schwein & Rind",
+                dumpling_desc1: "Traditionelles Rezept mit Premium-Fleisch",
+                dumpling2: "Hähnchen",
+                dumpling_desc2: "Zarte Hähnchenfüllung",
+                dumpling3: "Pute",
+                dumpling_desc3: "Mager und aromatisch",
+                dumpling4: "Kalbfleisch",
+                dumpling_desc4: "Zarte Kalbfleischfüllung",
+                dumpling5: "Lachs & Käse",
+                dumpling_desc5: "Premium-Lachs mit cremigem Käse",
+                premium: "Premium",
+                belarus_recipe: "Nach authentischen belarussischen Rezepten zubereitet",
+                pierogi_title: "PIEROGI - Polnische Teigtaschen",
+                pierogi1: "Kartoffel & Käse (Ruskie)",
+                pierogi_desc1: "Klassisch polnisch mit Bauerkäse",
+                pierogi2: "Spinat & Ricotta",
+                pierogi_desc2: "Mit Parmesan",
+                pierogi3: "Kartoffel & Speck",
+                pierogi_desc3: "Mit karamellisierten Zwiebeln",
+                pierogi4: "Kohl & Pilze",
+                pierogi_desc4: "Mit Wildpilzen und Zwiebeln",
+                pierogi5: "Kartoffel & Pilze",
+                pierogi_desc5: "Waldpilze mit Kartoffeln",
+                chebureki_title: "CZEBUREKI - Gebratene Teigtaschen",
+                per_piece: "Pro Stück - 12 PLN",
+                cheburek1: "Schwein & Rind",
+                cheburek2: "Mozzarella & Tomate",
+                cheburek3: "Kartoffel & Speck",
+                feedback: "Wir freuen uns über Ihr Feedback zu unseren Gerichten!",
+                love: "Alle unsere Gerichte werden mit besonderer Liebe zubereitet",
+                dishes_title: "HAUPTGERICHTE",
+                dish1: "Gemüsesuppe",
+                dish2: "Borschtsch mit Fleisch",
+                dish3: "Hühnerbrühe",
+                dish4: "Soljanka (Fleischsuppe)",
+                dish5: "Hering im Pelzmantel",
+                dish6: "Olivier-Salat",
+                drinks_title: "GETRÄNKE & DESSERTS",
+                coffee: "Magischer Kaffee",
+                coffee1: "Flat White",
+                coffee2: "Latte",
+                other_drinks: "Andere Getränke",
+                hot1: "Sanddorngetränk mit Honig",
+                hot2: "Tee Ihrer Wahl",
+                juice: "Saft Ihrer Wahl",
+                water: "Wasser (mit Kohlensäure/still)",
+                desserts: "Lavatia Desserts",
+                dessert1: "Teigtaschen mit Kirsche/Erdbeere",
+                dessert2: "Teigtaschen mit süßem Quark",
+                dessert3: "Sernichki Klassisch",
+                dessert4: "Sernichki mit Rosinen",
+                dessert5: "Sernichki mit Schokolade",
+                contact_title: "KONTAKT & LIEFERUNG",
+                address: "Adresse",
+                phone: "Telefon",
+                delivery: "Lieferung",
+                footer_desc: "Restaurant • Pierogarnia • Laden",
+                hours_title: "Öffnungszeiten",
+                mon_fri: "Mo-Fr:",
+                sat: "Samstag:",
+                sun: "Sonntag:",
+                feedback_title: "Feedback",
+                feedback_footer: "Wir freuen uns über Ihr Feedback zu unseren Gerichten!",
+                love_footer: "Alle Gerichte mit besonderer Liebe zubereitet",
+                rights: "Alle Rechte vorbehalten."
+            },
+            by: {
+                tagline: "Традыцыйная польская кухня, прыгатаваная з любоўю",
+                menu_dumplings: "Пельмені",
+                menu_pierogi: "Пірагі",
+                menu_chebureki: "Чабуракi",
+                menu_main: "Асноўныя стравы",
+                menu_drinks: "Напоі",
+                menu_contact: "Кантакты",
+                dumplings_title: "ПЕЛЬМЕНI - Традыцыйныя Пельмені",
+                dumpling1: "Свініна + Ялавічына",
+                dumpling_desc1: "Традыцыйны рэцэпт з прэміум мясам",
+                dumpling2: "Курыца",
+                dumpling_desc2: "Няжны курыны фарш",
+                dumpling3: "Індзейка",
+                dumpling_desc3: "Магкая і смачная",
+                dumpling4: "Цяляціна",
+                dumpling_desc4: "Дэлікатны фарш з цяляціны",
+                dumpling5: "Ласось + Сыр",
+                dumpling_desc5: "Прэміум ласось з крэмавым сырам",
+                premium: "Прэміум",
+                belarus_recipe: "Прыгатавана па аўтэнтычных беларускіх рэцэптах",
+                pierogi_title: "ПIРАГI - Польскія Пельмені",
+                pierogi1: "Бульба + Тварог + Перац (Рускія)",
+                pierogi_desc1: "Класічны польскі стыль з тварогам",
+                pierogi2: "Шпінат + Сыр Рыкота + Сыр Пармезан",
+                pierogi_desc2: "З сырам пармезан",
+                pierogi3: "Бульба + Бакон + Цыбуля",
+                pierogi_desc3: "З карамелізаванай цыбуляй",
+                pierogi4: "Капуста + Баравікі + Цыбуля",
+                pierogi_desc4: "З дзікімі грыбамі і цыбуляй",
+                pierogi5: "Бульба + Баравікі",
+                pierogi_desc5: "Лясныя грыбы з бульбай",
+                chebureki_title: "ЧАБУРЭКI - Смажаныя Пельмені",
+                per_piece: "1 ШТ - 12 ZŁ",
+                cheburek1: "Свініна + Ялавічына",
+                cheburek2: "Мацарэла + Памідор",
+                cheburek3: "Бульба + Бакон",
+                feedback: "Мы ўдзячныя за вашу думку пра нашыя стравы!",
+                love: "Усе нашы стравы прыгатаваныя з асаблівай любоўю",
+                dishes_title: "СТРАВЫ",
+                dish1: "Гароднінная суп",
+                dish2: "Баршч з Мясам, Курыны булён",
+                dish3: "Курыны булён",
+                dish4: "Салянка (мясная суп)",
+                dish5: "Селядзец пад коўдрай (шуба)",
+                dish6: "Салата Аліўе",
+                drinks_title: "НАПОI I ДЭСЕРТЫ",
+                coffee: "Чароўная Кава",
+                coffee1: "Флэт Уайт",
+                coffee2: "Латэ",
+                other_drinks: "Іншыя напоі",
+                hot1: "Напой з абляпіхай з мёдам",
+                hot2: "Чай на ваш выбар",
+                juice: "Сок на ваш выбар",
+                water: "Вада (газаваная/негазаваная)",
+                desserts: "Дэсерты Лаватыя",
+                dessert1: "Пельмені з вішняй/суніцай",
+                dessert2: "Пельмені з салодкім тварогам",
+                dessert3: "Сярнічкі класічныя",
+                dessert4: "Сярнічкі з разынкамі",
+                dessert5: "Сярнічкі з шакаладам",
+                contact_title: "КАНТАКТЫ I ДАСТАЎКА",
+                address: "Адрас",
+                phone: "Тэлефон",
+                delivery: "Дастаўка",
+                footer_desc: "Рэстаран • Пірагарня • Крама",
+                hours_title: "Гадзіны працы",
+                mon_fri: "Пн-Пт:",
+                sat: "Субота:",
+                sun: "Нядзеля:",
+                feedback_title: "Водгук",
+                feedback_footer: "Мы ўдзячныя за вашу думку пра нашыя стравы!",
+                love_footer: "Усе стравы прыгатаваныя з асаблівай любоўю",
+                rights: "Усе правы абаронены."
+            }
+        };
+
+        // Language switching functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const langButtons = document.querySelectorAll('.lang-btn');
+            let currentLang = 'en';
+            
+            // Set language function
+            function setLanguage(lang) {
+                currentLang = lang;
+                
+                // Update active button
+                langButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if(btn.dataset.lang === lang) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Update all translatable elements
+                document.querySelectorAll('[data-translate]').forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if(translations[lang] && translations[lang][key]) {
+                        element.textContent = translations[lang][key];
+                    }
+                });
+            }
+            
+            // Event listeners for language buttons
+            langButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    setLanguage(this.dataset.lang);
+                });
+            });
+            
+            // Initialize with English
+            setLanguage('en');
+            
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if(target) {
+                        window.scrollTo({
+                            top: target.offsetTop - 100,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
